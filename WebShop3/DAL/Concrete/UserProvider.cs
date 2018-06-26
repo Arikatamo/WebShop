@@ -18,7 +18,7 @@ namespace WebShop3.DAL.Concrete
             _context = context;
         }
         public User RegisterUser(RegisterUserViewModel user)
-        {   
+        {
             using (TransactionScope scope = new TransactionScope())
             {
                 var el = _context.Users.SingleOrDefault(m => m.Email == user.Email);
@@ -30,7 +30,7 @@ namespace WebShop3.DAL.Concrete
                 string hashedPassword = cryptoService.Compute(user.Password);
                 Role userRole = _context.Roles.SingleOrDefault(m => m.Name == "User");
                 User newUser = new User { FullName = user.FullName, Email = user.Email, Password = hashedPassword, PasswordSalt = passwordSalt };
-                if(userRole!=null)
+                if (userRole != null)
                 {
                     newUser.Roles.Add(userRole);
                 }
@@ -40,4 +40,5 @@ namespace WebShop3.DAL.Concrete
                 return newUser;
             }
         }
+    }
 }
