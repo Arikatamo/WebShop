@@ -18,6 +18,9 @@ namespace WebShop3.DAL.Entities
         public string Password { get; set; }
         [Required, StringLength(maximumLength:255)]
         public string PasswordSalt { get; set; }
+        public bool EmailConfirmed { get; set; }
+        [Required, StringLength(maximumLength:255)]
+        public string EmailConfirmToken { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
     }
 }

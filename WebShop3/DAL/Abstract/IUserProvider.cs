@@ -11,5 +11,6 @@ namespace WebShop3.DAL.Abstract
     public interface IUserProvider
     {
         User RegisterUser(RegisterUserViewModel user);
+        User GetUser(int id);
     }
 }
