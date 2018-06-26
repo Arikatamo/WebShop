@@ -8,7 +8,7 @@ using WebShop3.Models;
 
 namespace WebShop3.DAL.Abstract
 {
-    interface IUserProvider
+    public interface IUserProvider
     {
         User RegisterUser(RegisterUserViewModel user);
     }

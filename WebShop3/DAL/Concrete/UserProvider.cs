@@ -29,7 +29,7 @@ namespace WebShop3.DAL.Concrete
                 string passwordSalt = cryptoService.GenerateSalt();
                 string hashedPassword = cryptoService.Compute(user.Password);
                 Role userRole = _context.Roles.SingleOrDefault(m => m.Name == "User");
-                User newUser = new User { FullName = user.FullName, Email = user.Email, Password = hashedPassword, PasswordSalt = passwordSalt };
+                User newUser = new User { FullName = user.FullName, Email = user.Email, Password = hashedPassword, PasswordSalt = passwordSalt, Roles = new List<Role>() };
                 if (userRole != null)
                 {
                     newUser.Roles.Add(userRole);
