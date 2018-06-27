@@ -10,7 +10,8 @@ namespace WebShop3.DAL.Abstract
 {
     public interface IUserProvider
     {
-        User RegisterUser(RegisterUserViewModel user);
         User GetUser(int id);
+        User RegisterUser(RegisterUserViewModel user);
+        bool EmailConfirm(int userId, string token);
     }
 }

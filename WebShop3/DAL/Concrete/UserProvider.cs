@@ -22,7 +22,6 @@ namespace WebShop3.DAL.Concrete
         {
             return _context.Users.SingleOrDefault(m => m.Id == id);
         }
-
         public User RegisterUser(RegisterUserViewModel user)
         {
             using (TransactionScope scope = new TransactionScope())
@@ -54,6 +53,21 @@ namespace WebShop3.DAL.Concrete
                 _context.SaveChanges();
                 scope.Complete();
                 return newUser;
+            }
+        }
+        public bool EmailConfirm(int userId, string token)
+        {
+            var el = _context.Users.FirstOrDefault(m => m.Id == userId);
+            if (el == null || el.EmailConfirmToken != token)
+            {
+                return false;
+            }
+            using (TransactionScope scope = new TransactionScope())
+            {
+                el.EmailConfirmed = true;
+                _context.SaveChanges();
+                scope.Complete();
+                return true;
             }
         }
     }

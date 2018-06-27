@@ -31,25 +31,30 @@ namespace WebShop3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterUserViewModel user)
         {
-            var el = _userProvider.RegisterUser(user);
-            if(el==null)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("","Email is already taken");
+                var el = _userProvider.RegisterUser(user);
+                if (el == null)
+                {
+                    ModelState.AddModelError("", "Email is already taken");
+                    return View();
+                }
+                var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = el.Id, token = el.EmailConfirmToken }, Request.Url.Scheme);
+                EmailService emailService = new EmailService();
+                await emailService.SendEmailAsync(el.Email, "Confirm your account", $"Confirm the registration by clicking on the link: <a href='{callbackUrl}'>link</a>");
+                return View("UserSuccess");
+            }
+            else
+            {
                 return View();
             }
-
-            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = el.Id, token = el.EmailConfirmToken}, Request.Url.Scheme);
-            EmailService emailService = new EmailService();
-            await emailService.SendEmailAsync(el.Email, "Confirm your account", $"Confirm the registration by clicking on the link: <a href='{callbackUrl}'>link</a>");
-
-            return View("UserSuccess");
         }
 
         [AllowAnonymous]
         public ActionResult ConfirmEmail(int userId, string token)
         {
-            var el =_userProvider.GetUser(userId);
-            
+            if(!_userProvider.EmailConfirm(userId,token))
+                return HttpNotFound();
             return View();
         }
     }
