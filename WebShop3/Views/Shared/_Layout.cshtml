@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="mr-0 p-0">
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,14 +16,17 @@
             <a class="navbar-brand" href="#">Hidden brand</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-               @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-
+                    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                </li>
                 <li class="nav-item">
-                @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
-
+                    @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
+                </li>
                 <li class="nav-item">
-                @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
-              
+                    @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Product", "Index", "Product", null, new { @class = "nav-link" })
+                </li>
             </ul>
 
 
