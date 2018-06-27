@@ -18,7 +18,7 @@ namespace WebShop3.DAL.Concrete
             _context = context;
         }
 
-        public EProducts AddProduct(ProductsItemsViewModel item)
+        public EProducts AddProduct(ProductsItemsAddViewModel item)
         {
             using (TransactionScope scope = new TransactionScope())
             {
@@ -26,20 +26,20 @@ namespace WebShop3.DAL.Concrete
                 {
                     Name = item.Name,
                     Discription = item.Discription,
-                    Price = item.Price,
-                    Vitamins = new List<EVitamins>(),
-                    Categories = new ECategoryProduct()
+                    Price = item.Price
+                    //Vitamins = new List<EVitamins>(),
+                    //Categories = new ECategoryProduct()
 
                 };
 
-                if (item.Category != null)
-                {
-                    var category = _context.eCategories.SingleOrDefault(x => x.Name == item.Category.Name);
-                    if (category != null)
-                    {
-                        product.Categories = category;
-                    }
-                }
+                //if (item.Category != null)
+                //{
+                //    var category = _context.eCategories.SingleOrDefault(x => x.Name == item.Category.Name);
+                //    if (category != null)
+                //    {
+                //        product.Categories = category;
+                //    }
+                //}
                 _context.eProducts.Add(product);
                 _context.SaveChanges();
                 scope.Complete();
@@ -56,6 +56,11 @@ namespace WebShop3.DAL.Concrete
         public EProducts GetProduct(int id)
         {
             return _context.eProducts.SingleOrDefault(m => m.Id == id);
+        }
+
+        public void SaveChange()
+        {
+            _context.SaveChanges();
         }
     }
 }

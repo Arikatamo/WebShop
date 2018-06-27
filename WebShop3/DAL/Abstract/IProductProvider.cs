@@ -10,8 +10,9 @@ namespace WebShop3.DAL.Abstract
 {
     public interface IProductProvider
     {
-        EProducts AddProduct(ProductsItemsViewModel item);
+        EProducts AddProduct(ProductsItemsAddViewModel item);
         EProducts GetProduct(int id);
         List<EProducts> GetAll();
+        void SaveChange();
     }
 }
