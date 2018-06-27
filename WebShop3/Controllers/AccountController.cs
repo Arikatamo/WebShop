@@ -49,7 +49,7 @@ namespace WebShop3.Controllers
         public ActionResult ConfirmEmail(int userId, string token)
         {
             var el =_userProvider.GetUser(userId);
-           
+            
             return View();
         }
     }
