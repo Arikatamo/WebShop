@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebShop3.Entity;
+using WebShop3.DAL.Abstract;
+using WebShop3.DAL.Entities;
 using WebShop3.Models.ViewProducts;
 namespace WebShop3.Controllers.ProductController
 {
     public class ProductController : Controller
     {
-        private readonly EFContext _context;
-        public ProductController()
+        private readonly IProductProvider _context;
+        public ProductController(IProductProvider productprovider)
         {
 
-            _context = new EFContext();
+            _context = productprovider;
         }
         // GET: Product
         public ActionResult Index()
         {
-            var model = _context.eProducts.Select
-                (prod => new ProductsItemsView
+            var model = _context.GetAll().Select
+                (prod => new ProductsItemsViewModel
                 {
                     Id = prod.Id,
                     Name = prod.Name,

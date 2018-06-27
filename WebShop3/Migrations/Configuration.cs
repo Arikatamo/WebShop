@@ -5,16 +5,17 @@ namespace WebShop3.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using WebShop3.DAL.Entities;
     using WebShop3.Entity.Products;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<WebShop3.Entity.EFContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EFContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(WebShop3.Entity.EFContext context)
+        protected override void Seed(EFContext context)
         {
            
 

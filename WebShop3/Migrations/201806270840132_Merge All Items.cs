@@ -3,7 +3,7 @@ namespace WebShop3.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class tblProductVitaminsCategory : DbMigration
+    public partial class MergeAllItems : DbMigration
     {
         public override void Up()
         {
@@ -26,8 +26,11 @@ namespace WebShop3.Migrations
                         Discription = c.String(nullable: false),
                         Price = c.Double(nullable: false),
                         CreateDate = c.DateTime(nullable: false),
+                        Categories_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.tblCategoryProduct", t => t.Categories_Id)
+                .Index(t => t.Categories_Id);
             
             CreateTable(
                 "dbo.tblVitamins",
@@ -38,19 +41,6 @@ namespace WebShop3.Migrations
                         Discription = c.String(nullable: false, maxLength: 200),
                     })
                 .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.EProductsECategoryProducts",
-                c => new
-                    {
-                        EProducts_Id = c.Int(nullable: false),
-                        ECategoryProduct_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.EProducts_Id, t.ECategoryProduct_Id })
-                .ForeignKey("dbo.tblProducts", t => t.EProducts_Id, cascadeDelete: true)
-                .ForeignKey("dbo.tblCategoryProduct", t => t.ECategoryProduct_Id, cascadeDelete: true)
-                .Index(t => t.EProducts_Id)
-                .Index(t => t.ECategoryProduct_Id);
             
             CreateTable(
                 "dbo.EVitaminsEProducts",
@@ -65,20 +55,19 @@ namespace WebShop3.Migrations
                 .Index(t => t.EVitamins_Id)
                 .Index(t => t.EProducts_Id);
             
+            AddColumn("dbo.Users", "EmailConfirmToken", c => c.String(nullable: false, maxLength: 255));
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.EVitaminsEProducts", "EProducts_Id", "dbo.tblProducts");
             DropForeignKey("dbo.EVitaminsEProducts", "EVitamins_Id", "dbo.tblVitamins");
-            DropForeignKey("dbo.EProductsECategoryProducts", "ECategoryProduct_Id", "dbo.tblCategoryProduct");
-            DropForeignKey("dbo.EProductsECategoryProducts", "EProducts_Id", "dbo.tblProducts");
+            DropForeignKey("dbo.tblProducts", "Categories_Id", "dbo.tblCategoryProduct");
             DropIndex("dbo.EVitaminsEProducts", new[] { "EProducts_Id" });
             DropIndex("dbo.EVitaminsEProducts", new[] { "EVitamins_Id" });
-            DropIndex("dbo.EProductsECategoryProducts", new[] { "ECategoryProduct_Id" });
-            DropIndex("dbo.EProductsECategoryProducts", new[] { "EProducts_Id" });
+            DropIndex("dbo.tblProducts", new[] { "Categories_Id" });
+            DropColumn("dbo.Users", "EmailConfirmToken");
             DropTable("dbo.EVitaminsEProducts");
-            DropTable("dbo.EProductsECategoryProducts");
             DropTable("dbo.tblVitamins");
             DropTable("dbo.tblProducts");
             DropTable("dbo.tblCategoryProduct");

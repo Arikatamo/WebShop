@@ -7,13 +7,13 @@ namespace WebShop3.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class producthasonecategory : IMigrationMetadata
+    public sealed partial class MergeAllItems : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(producthasonecategory));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MergeAllItems));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806261052521_product has one category"; }
+            get { return "201806270840132_Merge All Items"; }
         }
         
         string IMigrationMetadata.Source

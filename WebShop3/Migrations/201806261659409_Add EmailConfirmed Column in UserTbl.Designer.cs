@@ -7,13 +7,13 @@ namespace WebShop3.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class tblProductVitaminsCategory : IMigrationMetadata
+    public sealed partial class AddEmailConfirmedColumninUserTbl : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(tblProductVitaminsCategory));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddEmailConfirmedColumninUserTbl));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806261037023_tbl Product, Vitamins, Category"; }
+            get { return "201806261659409_Add EmailConfirmed Column in UserTbl"; }
         }
         
         string IMigrationMetadata.Source
