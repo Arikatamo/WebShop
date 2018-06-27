@@ -17,6 +17,7 @@ namespace WebShop3.Controllers.ProductController
             _context = productprovider;
         }
         // GET: Product
+        [HttpGet]
         public ActionResult Index()
         {
             var model = _context.GetAll().Select
@@ -29,6 +30,25 @@ namespace WebShop3.Controllers.ProductController
                     DateCreate = prod.CreateDate
                 }).ToList();
                 return View(model);
+        }
+        [HttpGet]
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ProductsItemsViewModel item)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.AddProduct(item);
+                return RedirectToAction("Index");
+            }
+            return View(item);
         }
 
     }
