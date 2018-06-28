@@ -31,7 +31,7 @@ namespace WebShop3.Models.ViewProducts
         public string Name { get; set; }
         [DisplayName("Опис"), StringLength(maximumLength: 100, ErrorMessage = "Мінімум 10 та Максимум 100 символів ", MinimumLength = 10), Required]
         public string Discription { get; set; }
-        [DisplayName("Ціна"), Required, MinLength(1)]
+        [DisplayName("Ціна"), Required]
         public double Price { get; set; }
     }
 }
