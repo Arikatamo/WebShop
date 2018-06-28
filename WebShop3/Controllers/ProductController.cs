@@ -47,7 +47,7 @@ namespace WebShop3.Controllers.ProductController
             if (ModelState.IsValid)
             {
                 _context.AddProduct(item);
-                return RedirectToAction("Product/Index");
+                return RedirectToAction("Index");
             }
             return View(item);
         }
@@ -70,6 +70,7 @@ namespace WebShop3.Controllers.ProductController
             return View();
         }
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ProductsItemsViewModel item)
         {
@@ -83,6 +84,33 @@ namespace WebShop3.Controllers.ProductController
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var model = _context.GetProduct(id);
+            if (model == null)
+            {
+                RedirectToAction("Index");
+
+            }
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(ProductsItemsViewModel item)
+        {
+
+            try
+            {
+                _context.Remove(item.Id);
+            }
+            catch (Exception)
+            {
+                RedirectToAction("Index");
+            }
+            return View(item);
         }
     }
 }
