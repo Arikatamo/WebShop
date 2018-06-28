@@ -18,8 +18,8 @@ namespace WebShop3.Controllers.ProductController
 
             _context = productprovider;
         }
-        // GET: Product
-        [HttpGet]
+        //GET: Product
+       [HttpGet]
         public ActionResult Index()
         {
             var model = _context.GetAll().Select
@@ -31,7 +31,7 @@ namespace WebShop3.Controllers.ProductController
                     Price = prod.Price,
                     DateCreate = prod.CreateDate
                 }).ToList();
-                return View(model);
+            return View(model);
         }
         [HttpGet]
         public ActionResult Create()
@@ -63,7 +63,7 @@ namespace WebShop3.Controllers.ProductController
                     Discription = product.Discription,
                     Price = product.Price,
                     DateCreate = product.CreateDate
-                    
+
                 };
                 return View(model);
             }
@@ -89,28 +89,26 @@ namespace WebShop3.Controllers.ProductController
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var model = _context.GetProduct(id);
-            if (model == null)
+            var item = _context.GetProduct(id);
+            ProductsItemsViewModel model = new ProductsItemsViewModel
             {
-                RedirectToAction("Index");
+                Id = item.Id,
+                DateCreate = item.CreateDate,
+                Discription = item.Discription,
+                Name = item.Name,
+                Price = item.Price
 
-            }
+            };
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(ProductsItemsViewModel item)
         {
-
-            try
-            {
                 _context.Remove(item.Id);
-            }
-            catch (Exception)
-            {
                 RedirectToAction("Index");
-            }
-            return View(item);
+         
+            return View();
         }
     }
 }

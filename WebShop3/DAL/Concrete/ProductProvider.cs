@@ -55,15 +55,22 @@ namespace WebShop3.DAL.Concrete
         {
             return _context.eProducts.SingleOrDefault(m => m.Id == id);
         }
-        public void Remove(int id)
+        public int Remove(int id)
         {
             using (TransactionScope scope = new TransactionScope())
             {
                 var item = _context.eProducts.FirstOrDefault(x => x.Id == id);
-                _context.eProducts.Remove(item);
-                _context.SaveChanges();
-                scope.Complete();
-                throw new Exception("Delete Complete");
+                if (item != null)
+                {
+                    _context.eProducts.Remove(item);
+                    _context.SaveChanges();
+                    scope.Complete();
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
             }
 
         }

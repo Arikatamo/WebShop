@@ -14,6 +14,6 @@ namespace WebShop3.DAL.Abstract
         EProducts GetProduct(int id);
         List<EProducts> GetAll();
         void SaveChange();
-        void Remove(int id);
+        int Remove(int id);
     }
 }
