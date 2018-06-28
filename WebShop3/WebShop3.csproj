@@ -203,14 +203,6 @@
     <Compile Include="Migrations\201806270840132_Merge All Items.Designer.cs">
       <DependentUpon>201806270840132_Merge All Items.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806280922421_Add column forgotToken Usertbl.cs" />
-    <Compile Include="Migrations\201806280922421_Add column forgotToken Usertbl.Designer.cs">
-      <DependentUpon>201806280922421_Add column forgotToken Usertbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806281004128_Add column forgotToken Usertbl2.cs" />
-    <Compile Include="Migrations\201806281004128_Add column forgotToken Usertbl2.Designer.cs">
-      <DependentUpon>201806281004128_Add column forgotToken Usertbl2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoriesItemViewModels.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
@@ -339,12 +331,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806270840132_Merge All Items.resx">
       <DependentUpon>201806270840132_Merge All Items.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806280922421_Add column forgotToken Usertbl.resx">
-      <DependentUpon>201806280922421_Add column forgotToken Usertbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806281004128_Add column forgotToken Usertbl2.resx">
-      <DependentUpon>201806281004128_Add column forgotToken Usertbl2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
