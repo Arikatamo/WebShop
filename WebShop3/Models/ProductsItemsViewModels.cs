@@ -21,6 +21,8 @@ namespace WebShop3.Models.ViewProducts
         /// CreateDate - Встанослюэться Автоматично При створенні Товару
         /// </summary>
         public DateTime DateCreate { get; set; }
+        [DisplayName("Останні Зміни")]
+        public DateTime LastChange { get; set; }
         [DisplayName("Категорія")]
         public CategoriesItemViewModel Category { get; set; }
     }
@@ -33,5 +35,8 @@ namespace WebShop3.Models.ViewProducts
         public string Discription { get; set; }
         [DisplayName("Ціна"), Required]
         public double Price { get; set; }
+        [DisplayName("Категорія")]
+        public CategoriesItemViewModel Category { get; set; }
+
     }
 }

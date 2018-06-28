@@ -39,7 +39,7 @@ namespace WebShop3.DAL.Concrete
             //        product.Categories = category;
             //    }
             //}
-            _context.eProducts.Add(product);
+                 _context.eProducts.Add(product);
                 _context.SaveChanges();
                 return product;
            

@@ -63,7 +63,6 @@ namespace WebShop3.Controllers.ProductController
                     Discription = product.Discription,
                     Price = product.Price,
                     DateCreate = product.CreateDate
-
                 };
                 return View(model);
             }
@@ -80,6 +79,7 @@ namespace WebShop3.Controllers.ProductController
                 product.Name = item.Name;
                 product.Price = item.Price;
                 product.Discription = item.Discription;
+                product.LastChange = DateTime.Now;
                 _context.SaveChange();
                 return RedirectToAction("Index");
             }

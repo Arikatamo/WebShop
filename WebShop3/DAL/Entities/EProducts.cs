@@ -24,6 +24,7 @@ namespace WebShop3.Entity.Products
         /// CreateDate - Встанослюэться Автоматично При створенні Товару
         /// </summary>
         public DateTime CreateDate { get; set; } = DateTime.Now;  /// CreateDate - Встанослюэться Автоматично При створенні Товару
+        public DateTime LastChange { get; set; } = DateTime.Now;
         public virtual IList<EVitamins> Vitamins { get; set; }
         public virtual ECategoryProduct Categories { get; set; }
 
