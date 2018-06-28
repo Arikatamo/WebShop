@@ -8,12 +8,11 @@ using WebShop3.Models.ViewProducts;
 
 namespace WebShop3.DAL.Abstract
 {
-    public interface IProductProvider
+    public interface ICategoryProvider
     {
-        EProducts AddProduct(ProductsItemsAddViewModel item);
-        EProducts GetProduct(int id);
-        List<ECategoryProduct> Get_All_Category();
-        List<EProducts> GetAll();
+        ECategoryProduct Add_Category(CategoriesAddViewModel item);
+        ECategoryProduct Get_Category(int id);
+        List<ECategoryProduct> Get_All();
         void SaveChange();
         int Remove(int id);
     }

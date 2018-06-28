@@ -24,6 +24,8 @@ namespace WebShop3.App_Start
                 .InstancePerRequest();
             builder.RegisterType<ProductProvider>().As<IProductProvider>()
              .InstancePerRequest();
+            builder.RegisterType<CategoryProvider>().As<ICategoryProvider>()
+            .InstancePerRequest();
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

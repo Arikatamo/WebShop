@@ -25,21 +25,17 @@ namespace WebShop3.DAL.Concrete
                 {
                     Name = item.Name,
                     Discription = item.Discription,
-                    Price = item.Price,
-                    Vitamins = new List<EVitamins>(),
-                    Categories = new ECategoryProduct()
+                    Price = item.Price
 
                 };
 
-            //if (item.Category != null)
-            //{
-            //    var category = _context.eCategories.SingleOrDefault(x => x.Name == item.Category.Name);
-            //    if (category != null)
-            //    {
-            //        product.Categories = category;
-            //    }
-            //}
-                 _context.eProducts.Add(product);
+
+                var category = _context.eCategories.SingleOrDefault(x => x.Id == item.CategoryId);
+            if (category != null)
+            {
+                product.Categories = category;
+            }
+            _context.eProducts.Add(product);
                 _context.SaveChanges();
                 return product;
            
@@ -49,6 +45,10 @@ namespace WebShop3.DAL.Concrete
         public List<EProducts> GetAll()
         {
             return _context.eProducts.ToList();
+        }
+        public List<ECategoryProduct> Get_All_Category()
+        {
+            return _context.eCategories.ToList();
         }
 
         public EProducts GetProduct(int id)

@@ -7,6 +7,11 @@ using System.Web;
 
 namespace WebShop3.Models.ViewProducts
 {
+    public class SelectItemViewModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
     public class ProductsItemsViewModel
     {
         public int Id { get; set; }
@@ -35,8 +40,9 @@ namespace WebShop3.Models.ViewProducts
         public string Discription { get; set; }
         [DisplayName("Ціна"), Required]
         public double Price { get; set; }
+        public List<SelectItemViewModel> CategoryList { get; set; }
         [DisplayName("Категорія")]
-        public CategoriesItemViewModel Category { get; set; }
+        public int CategoryId { get; set; }
 
     }
 }

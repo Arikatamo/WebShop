@@ -26,6 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.LastChange)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -44,6 +47,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LastChange)
+        </td>
+        <td>
+            @Html.Partial("_Categories", item.Category)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

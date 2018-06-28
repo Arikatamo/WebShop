@@ -8,6 +8,8 @@ using WebShop3.DAL.Abstract;
 using WebShop3.DAL.Entities;
 using WebShop3.Models.ViewProducts;
 using WebShop3.Models;
+using WebShop3.DAL.Concrete;
+
 namespace WebShop3.Controllers.ProductController
 {
     public class ProductController : Controller
@@ -15,7 +17,6 @@ namespace WebShop3.Controllers.ProductController
         private readonly IProductProvider _context;
         public ProductController(IProductProvider productprovider)
         {
-
             _context = productprovider;
         }
         //GET: Product
@@ -29,14 +30,25 @@ namespace WebShop3.Controllers.ProductController
                     Name = prod.Name,
                     Discription = prod.Discription,
                     Price = prod.Price,
-                    DateCreate = prod.CreateDate
+                    DateCreate = prod.CreateDate,
+                    LastChange = prod.LastChange,
+                    Category = new CategoriesItemViewModel { Name = prod.Categories.Name }
                 }).ToList();
             return View(model);
         }
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            ProductsItemsAddViewModel model = new ProductsItemsAddViewModel();
+            model.CategoryList = _context.Get_All_Category()
+                .Select(r => new SelectItemViewModel
+                {
+                    Id = r.Id,
+                    Name = r.Name
+                }).ToList();
+            if (model.CategoryList.Count != 0)
+                model.CategoryId = model.CategoryList.First().Id;
+            return View(model);
         }
 
         [HttpPost]
@@ -44,6 +56,7 @@ namespace WebShop3.Controllers.ProductController
         [AllowAnonymous]
         public ActionResult Create(ProductsItemsAddViewModel item)
         {
+
             if (ModelState.IsValid)
             {
                 _context.AddProduct(item);
@@ -62,7 +75,9 @@ namespace WebShop3.Controllers.ProductController
                     Name = product.Name,
                     Discription = product.Discription,
                     Price = product.Price,
-                    DateCreate = product.CreateDate
+                    DateCreate = product.CreateDate,
+                    LastChange = product.LastChange
+                    
                 };
                 return View(model);
             }
@@ -105,8 +120,8 @@ namespace WebShop3.Controllers.ProductController
         [ValidateAntiForgeryToken]
         public ActionResult Delete(ProductsItemsViewModel item)
         {
-                _context.Remove(item.Id);
-                RedirectToAction("Index");
+            _context.Remove(item.Id);
+            RedirectToAction("Index");
          
             return View();
         }

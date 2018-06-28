@@ -173,12 +173,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="DAL\Abstract\ICategoryProvider.cs" />
     <Compile Include="DAL\Abstract\IProductProvider.cs" />
     <Compile Include="DAL\Abstract\IUserProvider.cs" />
+    <Compile Include="DAL\Concrete\CategoryProvider.cs" />
     <Compile Include="DAL\Concrete\ProductProvider.cs" />
     <Compile Include="DAL\Concrete\UserProvider.cs" />
     <Compile Include="DAL\Entities\ECategoryProducts.cs" />
@@ -316,6 +319,9 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\PasswordSuccess.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Product\_Categories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
