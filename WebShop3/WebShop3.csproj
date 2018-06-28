@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201806270840132_Merge All Items.Designer.cs">
       <DependentUpon>201806270840132_Merge All Items.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806280938218_aa.cs" />
+    <Compile Include="Migrations\201806280938218_aa.Designer.cs">
+      <DependentUpon>201806280938218_aa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoriesItemViewModels.cs" />
     <Compile Include="Models\ProductsItemsViewModels.cs" />
@@ -301,6 +305,7 @@
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Views\Account\UserSuccess.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -325,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806270840132_Merge All Items.resx">
       <DependentUpon>201806270840132_Merge All Items.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806280938218_aa.resx">
+      <DependentUpon>201806280938218_aa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
