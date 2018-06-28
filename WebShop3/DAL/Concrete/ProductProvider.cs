@@ -25,21 +25,21 @@ namespace WebShop3.DAL.Concrete
                 {
                     Name = item.Name,
                     Discription = item.Discription,
-                    Price = item.Price
-                    //Vitamins = new List<EVitamins>(),
-                    //Categories = new ECategoryProduct()
+                    Price = item.Price,
+                    Vitamins = new List<EVitamins>(),
+                    Categories = new ECategoryProduct()
 
                 };
 
-                //if (item.Category != null)
-                //{
-                //    var category = _context.eCategories.SingleOrDefault(x => x.Name == item.Category.Name);
-                //    if (category != null)
-                //    {
-                //        product.Categories = category;
-                //    }
-                //}
-                _context.eProducts.Add(product);
+            //if (item.Category != null)
+            //{
+            //    var category = _context.eCategories.SingleOrDefault(x => x.Name == item.Category.Name);
+            //    if (category != null)
+            //    {
+            //        product.Categories = category;
+            //    }
+            //}
+            _context.eProducts.Add(product);
                 _context.SaveChanges();
                 return product;
            
@@ -54,6 +54,18 @@ namespace WebShop3.DAL.Concrete
         public EProducts GetProduct(int id)
         {
             return _context.eProducts.SingleOrDefault(m => m.Id == id);
+        }
+        public void Remove(int id)
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                var item = _context.eProducts.FirstOrDefault(x => x.Id == id);
+                _context.eProducts.Remove(item);
+                _context.SaveChanges();
+                scope.Complete();
+                throw new Exception("Delete Complete");
+            }
+
         }
 
         public void SaveChange()
