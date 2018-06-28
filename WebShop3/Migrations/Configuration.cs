@@ -19,29 +19,20 @@ namespace WebShop3.Migrations
         {
            
 
-            List<ECategoryProduct> Categories = new List<ECategoryProduct>
-            {
-                new ECategoryProduct { Id = 1,  Name = "Мясо"},
-                 new ECategoryProduct { Id = 2,  Name = "Риба"},
-                  new ECategoryProduct { Id = 3,  Name = "Хліб"},
-                   new ECategoryProduct { Id = 4,  Name = "Макарони"},
-                    new ECategoryProduct { Id = 5,  Name = "Крупи"}
-            };
-            foreach (var item in Categories)
-            {
-                context.eCategories.AddOrUpdate(item);
-            }
+            //List<ECategoryProduct> Categories = new List<ECategoryProduct>
+            //{
+            //    new ECategoryProduct { Id = 1,  Name = "Мясо"},
+            //     new ECategoryProduct { Id = 2,  Name = "Риба"},
+            //      new ECategoryProduct { Id = 3,  Name = "Хліб"},
+            //       new ECategoryProduct { Id = 4,  Name = "Макарони"},
+            //        new ECategoryProduct { Id = 5,  Name = "Крупи"}
+            //};
+            //foreach (var item in Categories)
+            //{
+            //    context.eCategories.AddOrUpdate(item);
+            //}
 
-            List<EProducts> Products = new List<EProducts>
-            {
-                new EProducts { Id = 1, Categories = Categories[0], Name = "Свинина", Price = 100 },
-                  new EProducts { Id = 2, Categories = Categories[1], Name = "Палтус", Price = 100 }
-            };
 
-            foreach (var item in Products)
-            {
-                context.eProducts.AddOrUpdate(item);
-            }
             List<EVitamins> Vitamins = new List<EVitamins>
             {
             new EVitamins { Id = 1, Name = "A"},
@@ -83,17 +74,25 @@ namespace WebShop3.Migrations
                 new EVitamins { Id = 35, Name = "Вуглеводи"}
             };
 
+            List<EProducts> Products = new List<EProducts>
+            {
+                new EProducts { Id = 1, Categories = new ECategoryProduct{ Id = 1, Name = "Мясо" }, Name = "Свинина", Price = 100, Vitamins = new List<EVitamins>()}
+                
+            };
 
-            //Vitamins[0].Products.Add(Products[0]);
-            //Vitamins[0].Products.Add(Products[1]);
-            //Vitamins[1].Products.Add(Products[0]);
-            //Vitamins[1].Products.Add(Products[1]);
-            //Vitamins[2].Products.Add(Products[0]);
-            //Vitamins[2].Products.Add(Products[1]);
             foreach (var item in Vitamins)
             {
                 context.eVitamins.AddOrUpdate(item);
             }
+
+
+
+            foreach (var item in Products)
+            {
+                context.eProducts.AddOrUpdate(item);
+            }
+
+
             context.SaveChanges();
             //  This method will be called after migrating to the latest version.
 

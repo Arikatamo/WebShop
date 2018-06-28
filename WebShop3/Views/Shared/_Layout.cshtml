@@ -41,7 +41,22 @@
                 </li>
             </ul>
 
-
+            <ul class="navbar-nav pr-3">
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Привіт "+ User.Identity.Name,
+                   "Manage", "Account", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">@Html.ActionLink("Вихід", "Logout", "Account", null, new { @class = "nav-link" })</li>
+                }
+                else
+                {
+                    @*<li><a data-toggle="modal" data-target="#loginModal">Login</a></li>*@
+                    <li class="nav-item">@Html.ActionLink("Вхід", "Login", "Account", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Реєстрація", "Register", "Account", null, new { @class = "nav-link" })</li>
+                }
+            </ul>
         </div>
     </nav>
 

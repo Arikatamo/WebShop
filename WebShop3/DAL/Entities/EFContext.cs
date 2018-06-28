@@ -15,5 +15,19 @@ namespace WebShop3.DAL.Entities
         public DbSet<EProducts> eProducts { get; set; }
         public DbSet<ECategoryProduct> eCategories { get; set; }
         public DbSet<EVitamins> eVitamins { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<EVitamins>()
+                        .HasMany(s => s.Products)
+                        .WithMany(c => c.Vitamins)
+                        .Map(cs =>
+                        {
+                            cs.MapLeftKey("VitaminsId");
+                            cs.MapRightKey("ProductId");
+                        });
+
+        }
     }
 }

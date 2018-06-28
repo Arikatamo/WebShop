@@ -16,6 +16,6 @@ namespace WebShop3.Entity.Products
         public string Name { get; set; } = "Not Set";
         [Required, StringLength(maximumLength: 200)]
         public string Discription { get; set; } = "Not Set";
-        public virtual IList<EProducts> Products { get; set; }
+        public virtual ICollection<EProducts> Products { get; set; }
     }
 }

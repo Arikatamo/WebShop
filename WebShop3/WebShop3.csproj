@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201806281047584_Last Change in product.Designer.cs">
       <DependentUpon>201806281047584_Last Change in product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806281532039_many to Many.cs" />
+    <Compile Include="Migrations\201806281532039_many to Many.Designer.cs">
+      <DependentUpon>201806281532039_many to Many.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoriesItemViewModels.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
@@ -352,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806281047584_Last Change in product.resx">
       <DependentUpon>201806281047584_Last Change in product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281532039_many to Many.resx">
+      <DependentUpon>201806281532039_many to Many.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

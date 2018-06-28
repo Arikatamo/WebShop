@@ -62,6 +62,17 @@ namespace WebShop3.Controllers.ProductController
                 _context.AddProduct(item);
                 return RedirectToAction("Index");
             }
+            else
+            {
+                item.CategoryList = _context.Get_All_Category()
+                .Select(r => new SelectItemViewModel
+                {
+                    Id = r.Id,
+                    Name = r.Name
+                }).ToList();
+                if (item.CategoryList.Count != 0)
+                    item.CategoryId = item.CategoryList.First().Id;
+            }    
             return View(item);
         }
         [HttpGet]
@@ -76,9 +87,17 @@ namespace WebShop3.Controllers.ProductController
                     Discription = product.Discription,
                     Price = product.Price,
                     DateCreate = product.CreateDate,
-                    LastChange = product.LastChange
-                    
+                    LastChange = product.LastChange,
+                    Category = new CategoriesItemViewModel { Id = product.Categories.Id, Name = product.Categories.Name },
+                    CategoryList = _context.Get_All_Category().Select
+                    (x=> new SelectItemViewModel
+                    {
+                        Id = x.Id,
+                        Name = x.Name
+                    }
+                    ).ToList()
                 };
+
                 return View(model);
             }
             return View();
@@ -121,9 +140,9 @@ namespace WebShop3.Controllers.ProductController
         public ActionResult Delete(ProductsItemsViewModel item)
         {
             _context.Remove(item.Id);
-            RedirectToAction("Index");
+            return RedirectToAction("Index");
          
-            return View();
+           // return View();
         }
     }
 }

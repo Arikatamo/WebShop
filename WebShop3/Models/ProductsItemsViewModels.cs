@@ -22,14 +22,13 @@ namespace WebShop3.Models.ViewProducts
         [DisplayName("Ціна"), Required]
         public double Price { get; set; }
         [DisplayName("Дата додавання")]
-        /// <summary>
-        /// CreateDate - Встанослюэться Автоматично При створенні Товару
-        /// </summary>
         public DateTime DateCreate { get; set; }
         [DisplayName("Останні Зміни")]
         public DateTime LastChange { get; set; }
         [DisplayName("Категорія")]
         public CategoriesItemViewModel Category { get; set; }
+        public List<SelectItemViewModel> CategoryList { get; set; }
+
     }
 
     public class ProductsItemsAddViewModel

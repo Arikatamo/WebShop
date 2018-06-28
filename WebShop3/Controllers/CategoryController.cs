@@ -61,8 +61,7 @@ namespace WebShop3.Controllers
         public ActionResult Delete(CategoriesItemViewModel item)
         {
             _context.Remove(item.Id);
-            RedirectToAction("Index");
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }
