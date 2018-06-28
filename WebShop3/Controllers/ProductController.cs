@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebShop3.DAL.Abstract;
 using WebShop3.DAL.Entities;
 using WebShop3.Models.ViewProducts;
+using WebShop3.Models;
 namespace WebShop3.Controllers.ProductController
 {
     public class ProductController : Controller
@@ -38,18 +40,20 @@ namespace WebShop3.Controllers.ProductController
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Create(ProductsItemsAddViewModel item)
         {
             if (ModelState.IsValid)
             {
                 _context.AddProduct(item);
-                return RedirectToAction("Index");
+                return RedirectToAction("Product/Index");
             }
             return View(item);
         }
         [HttpGet]
         public ActionResult Edit(int id)
-        {
+        { ///
             var product = _context.GetProduct(id);
             if (product != null)
             {
@@ -57,13 +61,16 @@ namespace WebShop3.Controllers.ProductController
                 {
                     Name = product.Name,
                     Discription = product.Discription,
-                    Price = product.Price
+                    Price = product.Price,
+                    DateCreate = product.CreateDate
+                    
                 };
                 return View(model);
             }
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(ProductsItemsViewModel item)
         {
             var product = _context.GetProduct(item.Id);

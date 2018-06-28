@@ -20,8 +20,7 @@ namespace WebShop3.DAL.Concrete
 
         public EProducts AddProduct(ProductsItemsAddViewModel item)
         {
-            using (TransactionScope scope = new TransactionScope())
-            {
+        
                 EProducts product = new EProducts
                 {
                     Name = item.Name,
@@ -42,9 +41,8 @@ namespace WebShop3.DAL.Concrete
                 //}
                 _context.eProducts.Add(product);
                 _context.SaveChanges();
-                scope.Complete();
                 return product;
-            }
+           
             
         }
 
