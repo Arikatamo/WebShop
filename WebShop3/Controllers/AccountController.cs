@@ -29,11 +29,11 @@ namespace WebShop3.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterUserViewModel user)
+        public async Task<ActionResult> Register(RegisterUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var el = _userProvider.RegisterUser(user);
+                var el = _userProvider.RegisterUser(model);
                 if (el == null)
                 {
                     ModelState.AddModelError("", "Email is already taken");
@@ -48,6 +48,61 @@ namespace WebShop3.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var el = _userProvider.GetUserByEmail(model.Email);
+                if (el == null)
+                {
+                    ModelState.AddModelError("", "User is not found");
+                    return View();
+                }
+                el = _userProvider.GenerateForgotPasswordToken(el);
+                var callbackUrl = Url.Action("ChangePassword", "Account", new { userId = el.Id, token = el.ForgotToken }, Request.Url.Scheme);
+                EmailService emailService = new EmailService();
+                await emailService.SendEmailAsync(el.Email, "Password recovery", $"You can change your password by clicking on the link: <a href='{callbackUrl}'>link</a>");
+                return View("PassworsEmailSuccess");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public ActionResult ChangePassword(int userId, string token)
+        {
+            if (!_userProvider.CheckForgotToken(userId, token))
+                return HttpNotFound();
+            ChangePasswordViewModel model = new ChangePasswordViewModel { Id = userId };
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var el = _userProvider.ChangePassword(model.Id, model.Password);
+                if(el == null)
+                    return HttpNotFound();
+                return View("PasswordSuccess");
+            }
+            else
+                return View();
         }
 
         [AllowAnonymous]
