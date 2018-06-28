@@ -203,12 +203,14 @@
     <Compile Include="Migrations\201806270840132_Merge All Items.Designer.cs">
       <DependentUpon>201806270840132_Merge All Items.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806280938218_aa.cs" />
-    <Compile Include="Migrations\201806280938218_aa.Designer.cs">
-      <DependentUpon>201806280938218_aa.cs</DependentUpon>
+    <Compile Include="Migrations\201806281030352_Add forgot token to usertbl.cs" />
+    <Compile Include="Migrations\201806281030352_Add forgot token to usertbl.Designer.cs">
+      <DependentUpon>201806281030352_Add forgot token to usertbl.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoriesItemViewModels.cs" />
+    <Compile Include="Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ProductsItemsViewModels.cs" />
     <Compile Include="Models\RegisterUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -305,7 +307,10 @@
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Views\Account\UserSuccess.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
-    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\PassworsEmailSuccess.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\PasswordSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,8 +336,8 @@
     <EmbeddedResource Include="Migrations\201806270840132_Merge All Items.resx">
       <DependentUpon>201806270840132_Merge All Items.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806280938218_aa.resx">
-      <DependentUpon>201806280938218_aa.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806281030352_Add forgot token to usertbl.resx">
+      <DependentUpon>201806281030352_Add forgot token to usertbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

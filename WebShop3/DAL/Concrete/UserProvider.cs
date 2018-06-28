@@ -18,9 +18,13 @@ namespace WebShop3.DAL.Concrete
             _context = context;
         }
 
-        public User GetUser(int id)
+        public User GetUserById(int id)
         {
             return _context.Users.SingleOrDefault(m => m.Id == id);
+        }
+        public User GetUserByEmail(string email)
+        {
+            return _context.Users.SingleOrDefault(m => m.Email == email);
         }
         public User RegisterUser(RegisterUserViewModel user)
         {
@@ -68,6 +72,43 @@ namespace WebShop3.DAL.Concrete
                 _context.SaveChanges();
                 scope.Complete();
                 return true;
+            }
+        }
+        public User GenerateForgotPasswordToken(User user)
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                user.ForgotToken = Guid.NewGuid().ToString();
+                _context.SaveChanges();
+                scope.Complete();
+                return user;
+            }
+        }
+        public bool CheckForgotToken(int userId, string token)
+        {
+            var el = _context.Users.SingleOrDefault(m => m.Id == userId);
+            if (el == null || el.ForgotToken != token)
+                return false;
+            else
+                return true;
+        }
+        public User ChangePassword(int userId, string password)
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                var user = _context.Users.SingleOrDefault(m => m.Id == userId);
+                if(user == null)
+                {
+                    return null;
+                }
+                ICryptoService cryptoService = new PBKDF2();
+                string passwordSalt = cryptoService.GenerateSalt();
+                string hashedPassword = cryptoService.Compute(password);
+                user.Password = hashedPassword;
+                user.PasswordSalt = passwordSalt;
+                _context.SaveChanges();
+                scope.Complete();
+                return user;
             }
         }
     }
