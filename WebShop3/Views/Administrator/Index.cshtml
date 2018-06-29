@@ -2,24 +2,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
 @section Admin {
 
     <link href="~/Content/Admin/admin.css" rel="stylesheet" />
 }
-
-        <div class="row">
-            <div class="col-3">
-                <div class="category-wrap">
-                    <h3>Категории</h3>
-                    <ul>
-                        <li><a href="">Дизайн</a></li>
-                        <li><a href="">Фотошоп</a></li>
-                        <li><a href="">Книги</a></li>
-                        <li><a href="">Журналы</a></li>
-                        <li><a href="">Картинки</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
+@Html.Partial("_menu")
