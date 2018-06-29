@@ -46,10 +46,6 @@ namespace WebShop3.DAL.Concrete
         {
             return _context.eProducts.ToList();
         }
-        public List<ECategoryProduct> Get_All_Category()
-        {
-            return _context.eCategories.ToList();
-        }
 
         public EProducts GetProduct(int id)
         {

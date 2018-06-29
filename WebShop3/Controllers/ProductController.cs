@@ -15,9 +15,11 @@ namespace WebShop3.Controllers.ProductController
     public class ProductController : Controller
     {
         private readonly IProductProvider _context;
-        public ProductController(IProductProvider productprovider)
+        private readonly ICategoryProvider _context2;
+        public ProductController(IProductProvider productprovider, ICategoryProvider item)
         {
             _context = productprovider;
+            _context2 = item;
         }
         //GET: Product
        [HttpGet]
@@ -40,14 +42,14 @@ namespace WebShop3.Controllers.ProductController
         public ActionResult Create()
         {
             ProductsItemsAddViewModel model = new ProductsItemsAddViewModel();
-            model.CategoryList = _context.Get_All_Category()
+            model.CategoryList = _context2.Get_All()
                 .Select(r => new SelectItemViewModel
                 {
                     Id = r.Id,
                     Name = r.Name
                 }).ToList();
             if (model.CategoryList.Count != 0)
-                model.CategoryId = model.CategoryList.First().Id;
+                model.CategoryId = model.CategoryList.Last().Id;
             return View(model);
         }
 
@@ -64,14 +66,14 @@ namespace WebShop3.Controllers.ProductController
             }
             else
             {
-                item.CategoryList = _context.Get_All_Category()
+                item.CategoryList = _context2.Get_All()
                 .Select(r => new SelectItemViewModel
                 {
                     Id = r.Id,
                     Name = r.Name
                 }).ToList();
                 if (item.CategoryList.Count != 0)
-                    item.CategoryId = item.CategoryList.First().Id;
+                    item.CategoryId = item.CategoryList.Last().Id;
             }    
             return View(item);
         }
@@ -89,7 +91,7 @@ namespace WebShop3.Controllers.ProductController
                     DateCreate = product.CreateDate,
                     LastChange = product.LastChange,
                     Category = new CategoriesItemViewModel { Id = product.Categories.Id, Name = product.Categories.Name },
-                    CategoryList = _context.Get_All_Category().Select
+                    CategoryList = _context2.Get_All().Select
                     (x=> new SelectItemViewModel
                     {
                         Id = x.Id,
@@ -113,6 +115,7 @@ namespace WebShop3.Controllers.ProductController
                 product.Name = item.Name;
                 product.Price = item.Price;
                 product.Discription = item.Discription;
+                product.Categories = _context2.Get_Category(item.Category.Id);
                 product.LastChange = DateTime.Now;
                 _context.SaveChange();
                 return RedirectToAction("Index");

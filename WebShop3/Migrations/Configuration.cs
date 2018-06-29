@@ -17,20 +17,20 @@ namespace WebShop3.Migrations
 
         protected override void Seed(EFContext context)
         {
-           
 
-            //List<ECategoryProduct> Categories = new List<ECategoryProduct>
-            //{
-            //    new ECategoryProduct { Id = 1,  Name = "Мясо"},
-            //     new ECategoryProduct { Id = 2,  Name = "Риба"},
-            //      new ECategoryProduct { Id = 3,  Name = "Хліб"},
-            //       new ECategoryProduct { Id = 4,  Name = "Макарони"},
-            //        new ECategoryProduct { Id = 5,  Name = "Крупи"}
-            //};
-            //foreach (var item in Categories)
-            //{
-            //    context.eCategories.AddOrUpdate(item);
-            //}
+
+            List<ECategoryProduct> Categories = new List<ECategoryProduct>
+            {
+                new ECategoryProduct { Id = 1,  Name = "Мясо"},
+                 new ECategoryProduct { Id = 2,  Name = "Риба"},
+                  new ECategoryProduct { Id = 3,  Name = "Хліб"},
+                   new ECategoryProduct { Id = 4,  Name = "Макарони"},
+                    new ECategoryProduct { Id = 5,  Name = "Крупи"}
+            };
+            foreach (var item in Categories)
+            {
+                context.eCategories.AddOrUpdate(item);
+            }
 
 
             List<EVitamins> Vitamins = new List<EVitamins>
@@ -76,7 +76,7 @@ namespace WebShop3.Migrations
 
             List<EProducts> Products = new List<EProducts>
             {
-                new EProducts { Id = 1, Categories = new ECategoryProduct{ Id = 1, Name = "Мясо" }, Name = "Свинина", Price = 100, Vitamins = new List<EVitamins>()}
+                new EProducts { Id = 1, Name = "Свинина", Price = 100, Vitamins = new List<EVitamins>()}
                 
             };
 

@@ -12,7 +12,6 @@ namespace WebShop3.DAL.Abstract
     {
         EProducts AddProduct(ProductsItemsAddViewModel item);
         EProducts GetProduct(int id);
-        List<ECategoryProduct> Get_All_Category();
         List<EProducts> GetAll();
         void SaveChange();
         int Remove(int id);
