@@ -22,3 +22,92 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.login-content {
+    margin-top: 2px;
+    background: white;
+    border: 1px solid #ccc !important;
+    border-radius: 16px;
+}
+
+.login-menu-data {
+}
+
+.login-menu-arrow {
+}
+
+.login-menu-arrow-text {
+    margin-top: 150px;
+}
+
+.login-menu-social {
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 576px) {
+    .login-menu-arrow-text {
+        margin-top: 0px;
+        margin-left: 10px;
+    }
+
+    .login-menu-social {
+        margin-top: 0px;
+        margin-left: 10px;
+    }
+}
+
+.btn-facebook {
+    width: 70%;
+    background: #44619d;
+}
+
+.btn-google {
+    width: 70%;
+    background: #3593fa;
+}
+
+.soc-btn {
+    margin-top: 20px;
+}
+
+.soc-text {
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .soc-text {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .soc-text {
+        display: inline;
+    }
+
+    .soc-btn {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .btn-facebook {
+        width: 100%;
+    }
+
+    .btn-google {
+        width: 100%;
+    }
+}
+
+
+.login-menu-data h4 {
+    margin-top: 15px !important;
+    margin-left: 10px !important;
+}
+
+.login-menu-social h6 {
+    margin-top: 15px !important;
+}

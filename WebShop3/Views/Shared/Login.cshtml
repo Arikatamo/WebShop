@@ -1,0 +1,65 @@
+﻿@model WebShop3.Models.LoginViewModel
+
+<link rel="stylesheet" href="~/Content/Login/Style.css" type="text/css">
+
+<div class="modal-content">
+    <div class="row">
+        <div class="col-xl-5 col-lg-5 col-md-4 col-sm-4 col-xs-3">
+        </div>
+        <div class="login-content col-xl-6 col-lg-6 col-md-7 col-sm-8 col-xs-9">
+            <div class="row">
+                <div class="login-menu-data col-xl-6 col-lg-6 col-md-6 col-sm-8 col-xs-9">
+                    <h4>Login to the online store</h4>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.ActionLink("Forgot Password ?", "ForgotPassword", "Account", null, new { @class = "nav-link" })
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Login" class="btn btn-primary" />
+                                    <input type="submit" value="Close" class="btn btn-default b-close" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="login-menu-arrow col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <div class="login-menu-arrow-text">
+                        or
+                    </div>
+                </div>
+                <div class="login-menu-social col-xl-5 col-lg-5 col-md-4 col-sm-3 col-xs-2">
+                    <h6> Sign in as </h6>
+                    <div class="soc-btn">
+                        <button type="button" class="btn btn-primary btn-facebook"><i class="fa fa-facebook-square" style="font-size:24px;color:white"></i><span class="soc-text">Facebook</span></button>
+                    </div>
+                    <div class="soc-btn">
+                        <button type="button" class="btn btn-primary btn-google"><i class="fa fa-google" style="font-size:24px;color:red"></i><span class="soc-text">Google</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/Login/LoginModal.js" type="text/javascript"></script>
