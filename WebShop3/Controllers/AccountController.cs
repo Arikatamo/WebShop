@@ -97,7 +97,7 @@ namespace WebShop3.Controllers
             if (ModelState.IsValid)
             {
                 var el = _userProvider.ChangePassword(model.Id, model.Password);
-                if(el == null)
+                if (el == null)
                     return HttpNotFound();
                 return View("PasswordSuccess");
             }
@@ -108,7 +108,7 @@ namespace WebShop3.Controllers
         [AllowAnonymous]
         public ActionResult ConfirmEmail(int userId, string token)
         {
-            if(!_userProvider.EmailConfirm(userId,token))
+            if (!_userProvider.EmailConfirm(userId, token))
                 return HttpNotFound();
             return View();
         }
