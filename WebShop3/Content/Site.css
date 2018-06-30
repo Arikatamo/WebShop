@@ -24,16 +24,13 @@ textarea {
 }
 
 .login-content {
-    margin-top: 2px;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 2%;
+    margin-bottom: 2%;
     background: white;
     border: 1px solid #ccc !important;
     border-radius: 16px;
-}
-
-.login-menu-data {
-}
-
-.login-menu-arrow {
 }
 
 .login-menu-arrow-text {
@@ -63,7 +60,11 @@ textarea {
 
 .btn-google {
     width: 70%;
-    background: #3593fa;
+    background: #0069d9;
+}
+.facebook-icon {
+    width: 30px;
+    background-size: contain;
 }
 
 .soc-btn {
