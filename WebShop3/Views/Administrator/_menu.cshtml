@@ -3,24 +3,30 @@
         <div class="category-wrap">
             <h3>Категории</h3>
             <ul>
-                @using (Ajax.BeginForm("Product", new AjaxOptions { UpdateTargetId = "result" }))
+                @using (Ajax.BeginForm("Product", new AjaxOptions { UpdateTargetId = "result",
+                    LoadingElementId = "loading",
+                    LoadingElementDuration = 1000
+                }))
                 {
                     <li>
-                        <a href="#" onclick="$(this).closest('form').submit()" name="Product">Product</a>
+                        <a href="#" onclick="$(this).closest('form').submit()">Product</a>
                     </li>
-
-
                 }
-                @using (Ajax.BeginForm("Category", new AjaxOptions { UpdateTargetId = "result" }))
+                @using (Ajax.BeginForm("Category", new AjaxOptions { UpdateTargetId = "result",
+                    LoadingElementId = "loading",
+                    LoadingElementDuration = 1000
+                }))
                 {
                     <li>
                         <a href="#" onclick="$(this).closest('form').submit()" name="Category">Category</a>
                     </li>
                 }
-
                 <li><a href="#" name="Vitamin">Vitamins</a></li>
             </ul>
         </div>
+    </div>
+    <div id="loading" style="display:none; color:Red; font-weight:bold;">
+        <p>Идет загрузка...</p>
     </div>
     <div class="col-auto" id="result">
 

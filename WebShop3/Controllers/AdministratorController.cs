@@ -70,6 +70,14 @@ namespace WebShop3.Controllers
                 ).ToList();
             return PartialView(model);
         }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult DeleteCategory(CategoriesItemViewModel Delete)
+        {
+           // var model = category.Get_All().FirstOrDefault(x=> x.Id == id);
+           
+            return PartialView();
+        }
 
     }
 }
