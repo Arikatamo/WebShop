@@ -1,16 +1,29 @@
-﻿
-<div class="row">
+﻿<div class="row">
     <div class="col-3">
         <div class="category-wrap">
             <h3>Категории</h3>
             <ul>
-                <li><a href="~/Product/">Products</a></li>
-                <li><a href="~/Category/">Categories</a></li>
-                <li><a href="~/Product/">Vitamins</a></li>
-                @*<li><a href="~/Views/Product/Index.cshtml">Журналы</a></li>
-                <li><a href="~/Views/Product/Index.cshtml">Картинки</a></li>*@
+                @using (Ajax.BeginForm("Product", new AjaxOptions { UpdateTargetId = "result" }))
+                {
+                    <li>
+                        <a href="#" onclick="$(this).closest('form').submit()" name="Product">Product</a>
+                    </li>
+
+
+                }
+                @using (Ajax.BeginForm("Category", new AjaxOptions { UpdateTargetId = "result" }))
+                {
+                    <li>
+                        <a href="#" onclick="$(this).closest('form').submit()" name="Category">Category</a>
+                    </li>
+                }
+
+                <li><a href="#" name="Vitamin">Vitamins</a></li>
             </ul>
         </div>
+    </div>
+    <div class="col-auto" id="result">
+
     </div>
 </div>
 

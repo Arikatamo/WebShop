@@ -22,7 +22,7 @@ namespace WebShop3.Controllers.ProductController
             _context2 = item;
         }
         //GET: Product
-       [HttpGet]
+        [HttpPost]
         public ActionResult Index()
         {
             var model = _context.GetAll().Select
