@@ -17,5 +17,6 @@ namespace WebShop3.DAL.Abstract
         User GenerateForgotPasswordToken(User user);
         bool CheckForgotToken(int userId, string token);
         User ChangePassword(int userId, string password);
+        bool Login(string email, string password);
     }
 }

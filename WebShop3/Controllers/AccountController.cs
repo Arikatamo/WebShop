@@ -112,5 +112,35 @@ namespace WebShop3.Controllers
                 return HttpNotFound();
             return View();
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Login(LoginViewModel model)
+        {
+            if (string.IsNullOrEmpty(model.Email))
+            {
+                ModelState.AddModelError("", "Field Email is required");
+            }
+            if (string.IsNullOrEmpty(model.Password))
+            {   
+                ModelState.AddModelError("", "Field Password is required");
+            }
+            if (ModelState.IsValid)
+            {
+                if (_userProvider.Login(model.Email, model.Password))
+                {
+                    return View();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Field Password is required");
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }
