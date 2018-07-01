@@ -111,5 +111,10 @@ namespace WebShop3.DAL.Concrete
                 return user;
             }
         }
+
+        public bool Login(string email, string password)
+        {
+            return false;
+        }
     }
 }

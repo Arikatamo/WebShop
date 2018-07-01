@@ -6,35 +6,36 @@
             <div class="row">
                 <div class="login-menu-data col-xl-6 col-lg-6 col-md-6 col-sm-8 col-xs-9">
                     <h4>Login to the online store</h4>
-                    @using (Html.BeginForm())
+                    @using (Ajax.BeginForm("Login", "Account", new AjaxOptions { UpdateTargetId = "ValidationSummary" }))
                     {
                         @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            <div>Email</div>
-                            <div class="col-md-10">
-                                <input type="text" id="Email" class="form-control" />
+                        <div class="form-horizontal">
+                            <hr />
+                            <div id="ValidationSummary"></div>
+                            <div class="form-group">
+                                <div>Email</div>
+                                <div class="col-md-10">
+                                    <input type="text" name="Email" id="Email" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>Password</div>
+                                <div class="col-md-10">
+                                    <input type="password" name="Password" id="Password" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.ActionLink("Forgot Password ?", "ForgotPassword", "Account", null, new { @class = "nav-link" })
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+
+                                    <input type="submit" value="Login" class="btn btn-primary" />
+                                    <button type="button" class="btn btn-default b-close">Close</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div>Password</div>
-                            <div class="col-md-10">
-                                <input type="password" id="Password" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.ActionLink("Forgot Password ?", "ForgotPassword", "Account", null, new { @class = "nav-link" })
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Login" class="btn btn-primary" />
-                                <input type="submit" value="Close" class="btn btn-default b-close" />
-                            </div>
-                        </div>
-                    </div>
                     }
                 </div>
                 <div class="login-menu-arrow col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -48,7 +49,7 @@
                         <button type="button" class="btn btn-primary btn-facebook"><i class="fa fa-facebook-square" style="font-size:24px;color:white"></i><span class="soc-text">Facebook</span></button>
                     </div>
                     <div class="soc-btn">
-                        <button type="button" class="btn btn-primary btn-google"><img class="facebook-icon" src="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png"/><span class="soc-text">Google</span></button>
+                        <button type="button" class="btn btn-primary btn-google"><img class="facebook-icon" src="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png" /><span class="soc-text">Google</span></button>
                     </div>
                 </div>
             </div>
