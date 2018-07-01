@@ -20,7 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.LastChange)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -41,11 +43,14 @@
             @Html.DisplayFor(modelItem => item.LastChange)
         </td>
         <td>
+            @Html.Partial("~/Views/Product/_Categories.cshtml", item.Category)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "Details", new { id = item.Id }) |
             @*@using (Ajax.BeginForm("DeleteCategory", new AjaxOptions { UpdateTargetId = "result" }))
             {
-            <input type="submit" value="Delete" class="btn btn-default" name="@item.Id" /> 
+            <input type="submit" value="Delete" class="btn btn-default" name="@item.Id" />
             }*@
         </td>
     </tr>

@@ -70,13 +70,33 @@ namespace WebShop3.Controllers
                 ).ToList();
             return PartialView(model);
         }
-        [HttpPost]
+        //[HttpPost]
         [AllowAnonymous]
-        public ActionResult DeleteCategory(CategoriesItemViewModel Delete)
+        public ActionResult Category(int id)
         {
-           // var model = category.Get_All().FirstOrDefault(x=> x.Id == id);
-           
-            return PartialView();
+            category.Remove(id);
+            var model = category.Get_All().Select
+              (
+              item => new CategoriesItemViewModel
+              {
+                  Id = item.Id,
+                  Discription = item.Discription,
+                  Name = item.Name,
+                  //Products = item.Products.Select
+                  //(
+                  //    x => new ProductsItemsViewModel
+                  //    {
+                  //        DateCreate = x.CreateDate,
+                  //        Discription = x.Discription,
+                  //        Id = x.Id,
+                  //        LastChange = x.LastChange,
+                  //        Name = x.Name,
+                  //        Price = x.Price
+                  //    }
+                  //).ToList()
+              }
+              ).ToList();
+            return PartialView(model);
         }
 
     }

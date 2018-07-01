@@ -25,11 +25,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @using (Ajax.BeginForm("DeleteCategory", new AjaxOptions { UpdateTargetId = "result" }))
-            {
-                <input type="submit" value="Delete" class="btn btn-default" name="@item.Id" id="@item.Id" />
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.Id } , new { onclick = "$(this).closest('form').submit()" } )*@
-            }
+            @Ajax.ActionLink("Delete", "Category", new { id = item.Id }, new  AjaxOptions { UpdateTargetId = "result", Confirm = "Delete " + item.Name + "?"})
         </td>
     </tr>
 }

@@ -60,7 +60,7 @@ namespace WebShop3.DAL.Concrete
 
         public void SaveChange()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
     }
 }
