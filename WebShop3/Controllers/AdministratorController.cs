@@ -72,7 +72,7 @@ namespace WebShop3.Controllers
         }
         //[HttpPost]
         [AllowAnonymous]
-        public ActionResult Category(int id)
+        public ActionResult CategoryDelete(int id)
         {
             category.Remove(id);
             var model = category.Get_All().Select
@@ -98,6 +98,33 @@ namespace WebShop3.Controllers
               ).ToList();
             return PartialView(model);
         }
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult CategoryEdit(int id)
+        {
+             var model = category.Get_All().Select
+              (
+              item => new CategoriesItemViewModel
+              {
+                  Id = item.Id,
+                  Discription = item.Discription,
+                  Name = item.Name
+              }
+              ).FirstOrDefault(x=> x.Id==id);
+            return PartialView(model);
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult CategoryEdit(CategoriesItemViewModel item)
+        {
+            var model = category.Get_Category(item.Id);
+            if (item != null)
+            {
+                model.Name = item.Name;
+                category.SaveChange();
+            }
 
+            return Category("Category");
+        }
     }
 }

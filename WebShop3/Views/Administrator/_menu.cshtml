@@ -3,18 +3,19 @@
         <div class="category-wrap">
             <h3>Категории</h3>
             <ul>
-                @using (Ajax.BeginForm("Product", new AjaxOptions { UpdateTargetId = "result",
+                @using (Ajax.BeginForm("Product", new AjaxOptions { UpdateTargetId = "result"@*,
                     LoadingElementId = "loading",
-                    LoadingElementDuration = 1000
+                    LoadingElementDuration = 1000*@
                 }))
                 {
-                    <li>
-                        <a href="#" onclick="$(this).closest('form').submit()">Product</a>
-                    </li>
+                    
+                        <li>
+                            <a href="#" onclick="$(this).closest('form').submit()">Product</a>
+                        </li>
                 }
-                @using (Ajax.BeginForm("Category", new AjaxOptions { UpdateTargetId = "result",
+                @using (Ajax.BeginForm("Category", new AjaxOptions { UpdateTargetId = "result"@*,
                     LoadingElementId = "loading",
-                    LoadingElementDuration = 1000
+                    LoadingElementDuration = 1000*@
                 }))
                 {
                     <li>
