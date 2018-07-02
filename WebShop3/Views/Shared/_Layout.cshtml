@@ -8,6 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("Admin", required: false)
+
     <script type='text/javascript'>
         var appInsights = window.appInsights || function (config) {
             function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } }
@@ -73,7 +74,9 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    @RenderSection("Choosen", required: false)
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

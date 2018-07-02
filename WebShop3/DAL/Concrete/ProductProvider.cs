@@ -28,18 +28,40 @@ namespace WebShop3.DAL.Concrete
                     Price = item.Price
 
                 };
-
-
-            var category = (from p in _context.eCategories where item.CategoryId.Contains(p.Id) select p).ToList();
-            if (category != null)
+            if (item.CategoryId != null)
             {
-                product.Categories = category;
+                var category = (from p in _context.eCategories where item.CategoryId.Contains(p.Id) select p).ToList();
+                if (category != null)
+                {
+                    product.Categories = category;
+                }
             }
+
+
             _context.eProducts.Add(product);
                 _context.SaveChanges();
                 return product;
            
             
+        }
+
+        public void ChangeProduct(ProductsItemsAddViewModel item)
+        {
+            var product = GetProduct(item.Id);
+            if (product != null)
+            {
+                product.Name = item.Name;
+                product.Price = item.Price;
+                product.Discription = item.Discription;
+                product.Categories.Clear();
+                if (item.CategoryId != null)
+                {
+                    product.Categories = (from p in _context.eCategories where item.CategoryId.Contains(p.Id) select p).ToList();
+
+                }
+                product.LastChange = DateTime.Now;
+                SaveChange();
+            }
         }
 
         public List<EProducts> GetAll()

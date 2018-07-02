@@ -20,13 +20,14 @@ namespace WebShop3.Entity.Products
         [Required]
         public double Price { get; set; } = 0;
         [Required]
-        /// <summary>
-        /// CreateDate - Встанослюэться Автоматично При створенні Товару
-        /// </summary>
         public DateTime CreateDate { get; set; } = DateTime.Now;  /// CreateDate - Встанослюэться Автоматично При створенні Товару
+        [Required]
         public DateTime LastChange { get; set; } = DateTime.Now;
+        [Required]
+        public int Count { get; set; } = 0;
+        public string Image { get; set; }
         public virtual ICollection<EVitamins> Vitamins { get; set; }
-        public virtual ICollection<ECategoryProduct> Categories { get; set; }
+        public virtual IList<ECategoryProduct> Categories { get; set; }
 
     }
 }

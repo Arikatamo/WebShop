@@ -3,51 +3,85 @@
 @{
     ViewBag.Title = "Edit";
 }
+<link href="~/Content/Choosen/chosen.css" rel="stylesheet" />
+
 
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm(@*"Edit", "Product", FormMethod.Post, new { id = "form1" }*@))
+@using (Html.BeginForm(new { enctype = "multipart/form-data" }))
 {
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>ProductsItemsViewModel</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Discription, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Discription, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Discription, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                    @if (Model.ImagePath != null)
+                    {
+                        <img src="@Url.Content(Model.ImagePath)" , width="250" />
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                    }
+                    else
+                    {
+                        <img src="~/Images/Noimage.png" width="250" />
+                    }
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.CategoryList, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.ListBoxFor(x => x.CategoryId, new MultiSelectList(Model.CategoryList, "Id", "Name"), new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Edit" class="btn btn-default" />
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="file" name="Image" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-auto">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-auto">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Discription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-auto">
+                        @Html.EditorFor(model => model.Discription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Discription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-auto">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-auto">
+                        @Html.ListBoxFor(
+                                                x => x.CategoryId,
+                                                new MultiSelectList(Model.CategoryList, "Id", "Name")
+                                                , new { @class = "form-control" }
+                                    )
+
+                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -57,6 +91,16 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+@section Choosen
+{
+    <script src="~/Scripts/Choosen/chosen.jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#CategoryId").chosen(/*{ width: "100px"}*/);
+        })
+    </script>
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

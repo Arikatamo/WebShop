@@ -43,6 +43,38 @@ namespace WebShop3.Controllers.ProductController
                 }).ToList();
             return View(model);
         }
+        public ActionResult Details(int id)
+        {
+            var product = _context.GetProduct(id);
+            if (product != null)
+            {
+                ProductsItemsViewModel model = new ProductsItemsViewModel
+                {
+                    Name = product.Name,
+                    Discription = product.Discription,
+                    Price = product.Price,
+                    ImagePath = product.Image,
+                    DateCreate = product.CreateDate,
+                    LastChange = product.LastChange,
+                    Category = product.Categories.Select(x=> new CategoriesItemViewModel
+                    {
+                        Discription = x.Discription,
+                        Name = x.Name
+                    }).ToList(),
+                    CategoryId = product.Categories.Select(x => x.Id),
+                    CategoryList = _context2.Get_All().Select
+                    (x => new SelectItemViewModel
+                    {
+                        Id = x.Id,
+                        Name = x.Name
+                    }
+                    ).ToList()
+                };
+
+                return View(model);
+            }
+            return View();
+        }
         [HttpGet]
         public ActionResult Create()
         {
@@ -108,18 +140,12 @@ namespace WebShop3.Controllers.ProductController
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ProductsItemsAddViewModel item)
         {
-            var product = _context.GetProduct(item.Id);
-            if (product != null && ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                product.Name = item.Name;
-                product.Price = item.Price;
-                product.Discription = item.Discription;
-                product.Categories = (from p in _context2.Get_All() where item.CategoryId.Contains(p.Id) select p).ToList();
-                product.LastChange = DateTime.Now;
-                _context.SaveChange();
+                _context.ChangeProduct(item);
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(item);
         }
 
         [HttpGet]

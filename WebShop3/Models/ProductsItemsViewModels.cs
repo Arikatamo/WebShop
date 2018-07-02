@@ -29,6 +29,8 @@ namespace WebShop3.Models.ViewProducts
         public List<CategoriesItemViewModel> Category { get; set; }
         public List<SelectItemViewModel> CategoryList { get; set; }
         public IEnumerable<int> CategoryId { get; set; }
+        [DisplayName("Фото")]
+        public string ImagePath { get; set; }
 
     }
 
@@ -44,6 +46,8 @@ namespace WebShop3.Models.ViewProducts
         public List<SelectItemViewModel> CategoryList { get; set; }
         [DisplayName("Категорія")]
         public  IEnumerable<int> CategoryId { get; set; }
+        [DisplayName("Фото")]
+        public string ImagePath { get; set; }
 
     }
 }

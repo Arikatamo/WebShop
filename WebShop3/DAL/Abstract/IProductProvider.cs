@@ -11,6 +11,8 @@ namespace WebShop3.DAL.Abstract
     public interface IProductProvider
     {
         EProducts AddProduct(ProductsItemsAddViewModel item);
+        void ChangeProduct(ProductsItemsAddViewModel item);
+
         EProducts GetProduct(int id);
         List<EProducts> GetAll();
         void SaveChange();

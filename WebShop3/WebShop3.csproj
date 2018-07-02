@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201807021233453_Many categories in one product.Designer.cs">
       <DependentUpon>201807021233453_Many categories in one product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807021552428_Count and Image to product.cs" />
+    <Compile Include="Migrations\201807021552428_Count and Image to product.Designer.cs">
+      <DependentUpon>201807021552428_Count and Image to product.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoriesItemViewModels.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
@@ -247,6 +251,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Choosen\chosen-sprite.png" />
+    <Content Include="Content\Choosen\chosen.css" />
     <Content Include="Content\Login\LoginModal.js" />
     <Content Include="Content\Login\Style.css" />
     <Content Include="favicon.ico" />
@@ -255,6 +261,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Noimage.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -269,6 +276,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\Choosen\chosen.jquery.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -352,6 +360,7 @@
     <Content Include="Views\Administrator\Category.cshtml" />
     <Content Include="Views\Administrator\CategoryEdit.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -388,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807021233453_Many categories in one product.resx">
       <DependentUpon>201807021233453_Many categories in one product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807021552428_Count and Image to product.resx">
+      <DependentUpon>201807021552428_Count and Image to product.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
