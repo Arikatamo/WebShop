@@ -1,4 +1,4 @@
-﻿@model WebShop3.Models.ViewProducts.ProductsItemsViewModel
+﻿@model WebShop3.Models.ViewProducts.ProductsItemsAddViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -9,14 +9,12 @@
 
 @using (Html.BeginForm(@*"Edit", "Product", FormMethod.Post, new { id = "form1" }*@))
 {
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(x=> x.DateCreate)
+@Html.AntiForgeryToken()
+
 <div class="form-horizontal">
     <h4>ProductsItemsViewModel</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
-
     <div class="form-group">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -42,15 +40,9 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Category.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.CategoryList, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(
-                                    x => x.Category.Id,
-                                    new SelectList(Model.CategoryList, "Id", "Name")
-                                    , new { @class = "form-control" }
-                        )
-
-            @Html.ValidationMessageFor(model => model.Category.Id, "", new { @class = "text-danger" })
+            @Html.ListBoxFor(x => x.CategoryId, new MultiSelectList(Model.CategoryList, "Id", "Name"), new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

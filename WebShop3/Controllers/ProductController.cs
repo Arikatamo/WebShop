@@ -34,7 +34,12 @@ namespace WebShop3.Controllers.ProductController
                     Price = prod.Price,
                     DateCreate = prod.CreateDate,
                     LastChange = prod.LastChange,
-                    Category = new CategoriesItemViewModel { Name = prod.Categories.Name }
+                    Category =  prod.Categories.Select(x => new CategoriesItemViewModel
+                    {
+                        Discription = x.Discription,
+                        Id = x.Id,
+                        Name = x.Name
+                    }).ToList()
                 }).ToList();
             return View(model);
         }
@@ -48,8 +53,6 @@ namespace WebShop3.Controllers.ProductController
                     Id = r.Id,
                     Name = r.Name
                 }).ToList();
-            if (model.CategoryList.Count != 0)
-                model.CategoryId = model.CategoryList.Last().Id;
             return View(model);
         }
 
@@ -72,8 +75,6 @@ namespace WebShop3.Controllers.ProductController
                     Id = r.Id,
                     Name = r.Name
                 }).ToList();
-                if (item.CategoryList.Count != 0)
-                    item.CategoryId = item.CategoryList.Last().Id;
             }    
             return View(item);
         }
@@ -83,14 +84,12 @@ namespace WebShop3.Controllers.ProductController
             var product = _context.GetProduct(id);
             if (product != null)
             {
-                ProductsItemsViewModel model = new ProductsItemsViewModel
+                ProductsItemsAddViewModel model = new ProductsItemsAddViewModel
                 {
                     Name = product.Name,
                     Discription = product.Discription,
                     Price = product.Price,
-                    DateCreate = product.CreateDate,
-                    LastChange = product.LastChange,
-                    Category = new CategoriesItemViewModel { Id = product.Categories.Id, Name = product.Categories.Name },
+                    CategoryId = product.Categories.Select(x => x.Id),
                     CategoryList = _context2.Get_All().Select
                     (x=> new SelectItemViewModel
                     {
@@ -107,7 +106,7 @@ namespace WebShop3.Controllers.ProductController
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProductsItemsViewModel item)
+        public ActionResult Edit(ProductsItemsAddViewModel item)
         {
             var product = _context.GetProduct(item.Id);
             if (product != null && ModelState.IsValid)
@@ -115,7 +114,7 @@ namespace WebShop3.Controllers.ProductController
                 product.Name = item.Name;
                 product.Price = item.Price;
                 product.Discription = item.Discription;
-                product.Categories = _context2.Get_Category(item.Category.Id);
+                product.Categories = (from p in _context2.Get_All() where item.CategoryId.Contains(p.Id) select p).ToList();
                 product.LastChange = DateTime.Now;
                 _context.SaveChange();
                 return RedirectToAction("Index");
@@ -140,7 +139,7 @@ namespace WebShop3.Controllers.ProductController
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(ProductsItemsViewModel item)
+        public ActionResult Delete(ProductsItemsAddViewModel item)
         {
             _context.Remove(item.Id);
             return RedirectToAction("Index");

@@ -39,7 +39,12 @@ namespace WebShop3.Controllers
                     Price = prod.Price,
                     DateCreate = prod.CreateDate,
                     LastChange = prod.LastChange,
-                    Category = new CategoriesItemViewModel { Name = prod.Categories.Name }
+                    Category = prod.Categories.Select(x=> new CategoriesItemViewModel
+                    {
+                        Discription= x.Discription,
+                        Id = x.Id,
+                        Name = x.Name
+                    }).ToList()
                 }).ToList();
             return PartialView(model);
         }
@@ -53,19 +58,7 @@ namespace WebShop3.Controllers
                 {
                     Id = item.Id,
                     Discription = item.Discription,
-                    Name = item.Name,
-                    //Products = item.Products.Select
-                    //(
-                    //    x => new ProductsItemsViewModel
-                    //    {
-                    //        DateCreate = x.CreateDate,
-                    //        Discription = x.Discription,
-                    //        Id = x.Id,
-                    //        LastChange = x.LastChange,
-                    //        Name = x.Name,
-                    //        Price = x.Price
-                    //    }
-                    //).ToList()
+                    Name = item.Name
                 }
                 ).ToList();
             return PartialView(model);
@@ -81,19 +74,7 @@ namespace WebShop3.Controllers
               {
                   Id = item.Id,
                   Discription = item.Discription,
-                  Name = item.Name,
-                  //Products = item.Products.Select
-                  //(
-                  //    x => new ProductsItemsViewModel
-                  //    {
-                  //        DateCreate = x.CreateDate,
-                  //        Discription = x.Discription,
-                  //        Id = x.Id,
-                  //        LastChange = x.LastChange,
-                  //        Name = x.Name,
-                  //        Price = x.Price
-                  //    }
-                  //).ToList()
+                  Name = item.Name
               }
               ).ToList();
             return PartialView(model);
@@ -121,10 +102,11 @@ namespace WebShop3.Controllers
             if (item != null)
             {
                 model.Name = item.Name;
+                model.Discription = item.Discription;
                 category.SaveChange();
             }
 
-            return Category("Category");
+            return PartialView(item);
         }
     }
 }

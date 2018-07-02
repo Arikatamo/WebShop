@@ -30,7 +30,7 @@ namespace WebShop3.DAL.Concrete
                 };
 
 
-                var category = _context.eCategories.SingleOrDefault(x => x.Id == item.CategoryId);
+            var category = (from p in _context.eCategories where item.CategoryId.Contains(p.Id) select p).ToList();
             if (category != null)
             {
                 product.Categories = category;

@@ -26,13 +26,15 @@ namespace WebShop3.Models.ViewProducts
         [DisplayName("Останні Зміни")]
         public DateTime LastChange { get; set; }
         [DisplayName("Категорія")]
-        public CategoriesItemViewModel Category { get; set; }
+        public List<CategoriesItemViewModel> Category { get; set; }
         public List<SelectItemViewModel> CategoryList { get; set; }
+        public IEnumerable<int> CategoryId { get; set; }
 
     }
 
     public class ProductsItemsAddViewModel
     {
+        public int Id { get; set; }
         [DisplayName("Назва"), Required]
         public string Name { get; set; }
         [DisplayName("Опис"), StringLength(maximumLength: 100, ErrorMessage = "Мінімум 10 та Максимум 100 символів ", MinimumLength = 10), Required]
@@ -41,7 +43,7 @@ namespace WebShop3.Models.ViewProducts
         public double Price { get; set; }
         public List<SelectItemViewModel> CategoryList { get; set; }
         [DisplayName("Категорія")]
-        public int CategoryId { get; set; }
+        public  IEnumerable<int> CategoryId { get; set; }
 
     }
 }

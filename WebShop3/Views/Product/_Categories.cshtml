@@ -1,5 +1,8 @@
-﻿@model WebShop3.Models.ViewProducts.CategoriesItemViewModel
+﻿@model IEnumerable<WebShop3.Models.ViewProducts.CategoriesItemViewModel>
 <ul>
-        <li>@Model.Name</li>
+    @foreach (var item in Model)
+    {
+        <li>@item.Name</li>
+    }
 </ul>
 

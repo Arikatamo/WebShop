@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201806281532039_many to Many.Designer.cs">
       <DependentUpon>201806281532039_many to Many.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807021233453_Many categories in one product.cs" />
+    <Compile Include="Migrations\201807021233453_Many categories in one product.Designer.cs">
+      <DependentUpon>201807021233453_Many categories in one product.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoriesItemViewModels.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
@@ -321,7 +325,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -348,6 +351,7 @@
     <Content Include="Views\Administrator\Product.cshtml" />
     <Content Include="Views\Administrator\Category.cshtml" />
     <Content Include="Views\Administrator\CategoryEdit.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -381,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806281532039_many to Many.resx">
       <DependentUpon>201806281532039_many to Many.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807021233453_Many categories in one product.resx">
+      <DependentUpon>201807021233453_Many categories in one product.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -27,6 +27,15 @@ namespace WebShop3.DAL.Entities
                             cs.MapLeftKey("VitaminsId");
                             cs.MapRightKey("ProductId");
                         });
+            modelBuilder.Entity<EProducts>()
+                  .HasMany(s => s.Categories)
+                  .WithMany(c => c.Products)
+                  .Map(cs =>
+                  {
+                      cs.MapLeftKey("CategoriesId");
+                      cs.MapRightKey("ProductId");
+                  });
+
 
         }
     }
