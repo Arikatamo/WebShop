@@ -17,13 +17,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-3">
-                    <div class="form-group">
+                    <div class="form-group resultImg">
                         @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
 
                         @if (Model.ImagePath != null)
                         {
                             <img src="@Url.Content(Model.ImagePath)" , width="250" />
-
                         }
                         else
                         {

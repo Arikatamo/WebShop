@@ -68,7 +68,7 @@ namespace WebShop3.Controllers
         public ActionResult CategoryDelete(int id)
         {
             category.Remove(id);
-            var model = category.Get_All().Select
+            var Category = category.Get_All().Select
               (
               item => new CategoriesItemViewModel
               {
@@ -77,7 +77,7 @@ namespace WebShop3.Controllers
                   Name = item.Name
               }
               ).ToList();
-            return PartialView(model);
+            return PartialView("Category", Category);
         }
         [HttpGet]
         [AllowAnonymous]
@@ -105,8 +105,16 @@ namespace WebShop3.Controllers
                 model.Discription = item.Discription;
                 category.SaveChange();
             }
-
-            return PartialView(item);
+            var Category = category.Get_All().Select
+               (
+               it => new CategoriesItemViewModel
+               {
+                   Id = it.Id,
+                   Discription = it.Discription,
+                   Name = it.Name
+               }
+               ).ToList();
+            return PartialView("Category", Category);
         }
     }
 }
