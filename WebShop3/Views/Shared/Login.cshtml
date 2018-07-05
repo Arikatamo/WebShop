@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="login-menu-data col-xl-6 col-lg-6 col-md-6 col-sm-8 col-xs-9">
                     <h4>Login to the online store</h4>
-                    @using (Ajax.BeginForm("Login", "Account", new AjaxOptions { UpdateTargetId = "ValidationSummary" }))
+                    @using (Html.BeginForm("Login", "Account"))
                     {
                         @Html.AntiForgeryToken()
 
@@ -56,5 +56,3 @@
         </div>
     </div>
 </div>
-
-<script src="~/Content/Login/LoginModal.js" type="text/javascript"></script>

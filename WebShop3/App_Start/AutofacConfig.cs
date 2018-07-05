@@ -18,6 +18,7 @@ namespace WebShop3.App_Start
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             //builder.RegisterType<BookRepository>().As<IRepository>();
+
             builder.RegisterType<EFContext>()
                 .InstancePerRequest();
             builder.RegisterType<UserProvider>().As<IUserProvider>()
@@ -28,6 +29,7 @@ namespace WebShop3.App_Start
             .InstancePerRequest();
             builder.RegisterType<VitaminsProvider>().As<IVitaminsProvider>()
             .InstancePerRequest();
+
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
